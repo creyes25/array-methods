@@ -4,18 +4,18 @@ const animals = ["ant", "bison", "camel", "duck", "elephant"];
 
 Array.prototype._slice = undefined;
 
-// runTests(() => {
-//   if (!Array.prototype._slice) {
-//     throw new Error("❌ _slice method is undefined");
-//   } else {
-//     assert(animals._slice(2), ["camel", "duck", "elephant"]);
-//     assert(animals._slice(2, 4), ["camel", "duck"]);
-//     assert(animals._slice(1, 5), ["bison", "camel", "duck", "elephant"]);
-//     assert(animals._slice(-2), ["duck", "elephant"]);
-//     assert(animals._slice(2, -1), ["camel", "duck"]);
-//     assert(animals._slice(), ["ant", "bison", "camel", "duck", "elephant"]);
-//   }
-// }, "_slice method");
+runTests(() => {
+  if (!Array.prototype._slice) {
+    throw new Error("❌ _slice method is undefined");
+  } else {
+    assert(animals._slice(2), ["camel", "duck", "elephant"]);
+    assert(animals._slice(2, 4), ["camel", "duck"]);
+    assert(animals._slice(1, 5), ["bison", "camel", "duck", "elephant"]);
+    assert(animals._slice(-2), ["duck", "elephant"]);
+    assert(animals._slice(2, -1), ["camel", "duck"]);
+    assert(animals._slice(), ["ant", "bison", "camel", "duck", "elephant"]);
+  }
+}, "_slice method");
 
 /// Reduce
 const array1 = [1, 2, 3, 4];
@@ -527,27 +527,27 @@ Array.prototype._reverse = function () {
   return data;
 };
 
-runTests(() => {
-  if (!Array.prototype._reverse) {
-    throw new Error("❌ _reverse method is undefined");
-  } else {
-    const arr1 = [...numbers11];
-    arr1._reverse();
-    assert(arr1, [5, 4, 3, 2, 1]);
+// runTests(() => {
+//   if (!Array.prototype._reverse) {
+//     throw new Error("❌ _reverse method is undefined");
+//   } else {
+//     const arr1 = [...numbers11];
+//     arr1._reverse();
+//     assert(arr1, [5, 4, 3, 2, 1]);
 
-    const arr2 = [1];
-    arr2._reverse();
-    assert(arr2, [1]);
+//     const arr2 = [1];
+//     arr2._reverse();
+//     assert(arr2, [1]);
 
-    const arr3 = [];
-    arr3._reverse();
-    assert(arr3, []);
+//     const arr3 = [];
+//     arr3._reverse();
+//     assert(arr3, []);
 
-    const arr4 = [1, 2];
-    arr4._reverse();
-    assert(arr4, [2, 1]);
-  }
-}, "_reverse method");
+//     const arr4 = [1, 2];
+//     arr4._reverse();
+//     assert(arr4, [2, 1]);
+//   }
+// }, "_reverse method");
 
 /// ToString
 const fruits2 = ["apple", "banana", "cherry"];
