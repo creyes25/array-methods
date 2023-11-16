@@ -35,8 +35,16 @@ const array1 = [1, 2, 3, 4];
 const getMax = (a, b) => Math.max(a, b);
 const add = (a, b) => a + b;
 
-Array.prototype._reduce = undefined;
+Array.prototype._reduce = function (func, initialVal) {
+  let accumulator = (initialVal === undefined) ? this[0] : initialVal
+  let currentval = (initialVal === undefined) ? 1 : 0
+  
+  for (let i = currentval; i < this.length; i++) {
+    accumulator = func(accumulator, this[i])
+  }
 
+  return accumulator
+};
 // runTests(() => {
 //   if (!Array.prototype._reduce) {
 //     throw new Error("❌ _reduce method is undefined");
