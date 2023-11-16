@@ -219,7 +219,11 @@ Array.prototype._fill = undefined;
 /// At
 const items = ["a", "b", "c", "d", "e"];
 
-Array.prototype._at = undefined;
+Array.prototype._at = function (index) {
+  if (index < 0) index += this.length;
+
+  return this[index];
+};
 
 // runTests(() => {
 //   if (!Array.prototype._at) {
