@@ -303,7 +303,19 @@ Array.prototype._some = undefined;
 /// Shift
 const items2 = ["a", "b", "c", "d", "e"];
 
-Array.prototype._shift = undefined;
+Array.prototype._shift = function () {
+  const data = [];
+  const removedElement = this[0];
+
+  for (let i = 1; i < this.length; i++) {
+    data.push(this[i]);
+  }
+
+  this.length = 0;
+  this.push(...data);
+
+  return removedElement;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._shift) {
