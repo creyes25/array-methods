@@ -331,11 +331,11 @@ Array.prototype._shift = undefined;
 /// FindLast
 const numbers5 = [1, 4, 9, 4, 16, 25];
 
-// Array.prototype._findLast = function (func) {
-//   for (let i = this.length - 1; i >= 0; i--) {
-//     if (func(this[i], i, this)) return this[i];
-//   }
-// };
+Array.prototype._findLast = function (func) {
+  for (let i = this.length - 1; i >= 0; i--) {
+    if (func(this[i], i, this)) return this[i];
+  }
+};
 
 // runTests(() => {
 //   if (!Array.prototype._findLast) {
