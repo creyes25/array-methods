@@ -346,8 +346,15 @@ Array.prototype._findLast = undefined;
 /// Every
 const numbers6 = [2, 4, 6, 8, 10];
 
-Array.prototype._every = Array.prototype.every;
-
+Array.prototype._every = function(func) {
+  const data = []
+  
+  for (let i = 0; i < this.length; i++) {
+    if(func(this[i], i, this)) data.push(this[i])
+  }
+  
+  return this.length === data.length
+};
 // runTests(() => {
 //   if (!Array.prototype._every) {
 //     throw new Error("❌ _every method is undefined");
