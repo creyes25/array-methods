@@ -1,20 +1,18 @@
-// import runTests from "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.mjs"
-
 console.clear();
 /// Slice
 const animals = ["ant", "bison", "camel", "duck", "elephant"];
 
-Array.prototype._slice = function(start = 0, end= this.length) {
-  const data = []
-  if(start < 0) start += this.length
-  if(end < 0) end += this.length
-  if(end < start) end = start
-  
-  for(let i = start; i < end; i++) {
+Array.prototype._slice = function (start = 0, end = this.length) {
+  const data = [];
+  if (start < 0) start += this.length;
+  if (end < 0) end += this.length;
+  if (end < start) end = start;
+
+  for (let i = start; i < end; i++) {
     // data[data.length] = this[i] // one way to push data to the end of an array
-    data.push(this[i])
+    data.push(this[i]);
   }
-    return data
+  return data;
 };
 
 // runTests(() => {
@@ -36,26 +34,28 @@ const getMax = (a, b) => Math.max(a, b);
 const add = (a, b) => a + b;
 
 Array.prototype._reduce = function (func, initialVal) {
-  let accumulator = (initialVal === undefined) ? this[0] : initialVal
-  let currentval = (initialVal === undefined) ? 1 : 0
-  
+  let accumulator = initialVal === undefined ? this[0] : initialVal;
+  const currentval = initialVal === undefined ? 1 : 0;
+
   for (let i = currentval; i < this.length; i++) {
-    accumulator = func(accumulator, this[i])
+    accumulator = func(accumulator, this[i]);
   }
 
-  return accumulator
+  return accumulator;
 };
+
 // runTests(() => {
 //   if (!Array.prototype._reduce) {
 //     throw new Error("❌ _reduce method is undefined");
 //   } else {
-//     assert(array1.reduce(add, 0), 10);
-//     assert(array1.reduce(add), 10);
-//     assert([1, 100].reduce(getMax, 50), 100);
-//     assert([50].reduce(getMax, 10), 50);
-//     assert([1, 100].reduce(getMax), 100);
-//     assert([50].reduce(getMax), 50);
-//     assert([].reduce(getMax, 1), 1);
+//     assert(array1._reduce(add), 10);
+//     assert(array1._reduce(add, 0), 10);
+//     assert(array1._reduce(add), 10);
+//     assert([1, 100]._reduce(getMax, 50), 100);
+//     assert([50]._reduce(getMax, 10), 50);
+//     assert([1, 100]._reduce(getMax), 100);
+//     assert([50]._reduce(getMax), 50);
+//     assert([]._reduce(getMax, 1), 1);
 //   }
 // }, "_reduce method");
 
@@ -63,7 +63,9 @@ Array.prototype._reduce = function (func, initialVal) {
 const arr2 = [1, 2, 1];
 const arr3 = [1, 2, 3, 4];
 
-Array.prototype._flatMap = undefined;
+Array.prototype._flatMap = function () {
+  const data = [];
+};
 
 // runTests(() => {
 //   if (!Array.prototype._flatMap) {
@@ -329,32 +331,52 @@ Array.prototype._shift = undefined;
 /// FindLast
 const numbers5 = [1, 4, 9, 4, 16, 25];
 
-Array.prototype._findLast = undefined;
+// Array.prototype._findLast = function (func) {
+//   for (let i = this.length - 1; i >= 0; i--) {
+//     if (func(this[i], i, this)) return this[i];
+//   }
+// };
 
 // runTests(() => {
 //   if (!Array.prototype._findLast) {
 //     throw new Error("❌ _findLast method is undefined");
 //   } else {
-//     assert(numbers5._findLast(x => x % 2 === 0), 16);
-//     assert(numbers5._findLast(x => x === 4), 4);
-//     assert(numbers5._findLast((x, i) => i < 3), 9);
-//     assert(numbers5._findLast((x, _, arr) => x < arr[3]), 1);
-//     assert(numbers5._findLast(x => x > 50), undefined);
+//     assert(
+//       numbers5._findLast((x) => x % 2 === 0),
+//       16
+//     );
+//     assert(
+//       numbers5._findLast((x) => x === 4),
+//       4
+//     );
+//     assert(
+//       numbers5._findLast((x, i) => i < 3),
+//       9
+//     );
+//     assert(
+//       numbers5._findLast((x, _, arr) => x < arr[3]),
+//       1
+//     );
+//     assert(
+//       numbers5._findLast((x) => x > 50),
+//       undefined
+//     );
 //   }
 // }, "_findLast method");
 
 /// Every
 const numbers6 = [2, 4, 6, 8, 10];
 
-Array.prototype._every = function(func) {
-  const data = []
-  
+Array.prototype._every = function (func) {
+  const data = [];
+
   for (let i = 0; i < this.length; i++) {
-    if(func(this[i], i, this)) data.push(this[i])
+    if (func(this[i], i, this)) data.push(this[i]);
   }
-  
-  return this.length === data.length
+
+  return this.length === data.length;
 };
+
 // runTests(() => {
 //   if (!Array.prototype._every) {
 //     throw new Error("❌ _every method is undefined");
@@ -629,20 +651,7 @@ Array.prototype._push = undefined;
 /// Pop
 const plants = ["rose", "tulip", "daisy"];
 
-Array.prototype._pop = function () {
-  const data = []
-  const removedElement = this[this.length - 1]
-
-  for (let i = 0; i < this.length - 1; i++) {
-    data.push(this[i])
-  }
-
-  this.length = 0
-  this.push(...data)
-  console.log(this)
-
-  return removedElement
-};
+Array.prototype._pop = undefined;
 
 // runTests(() => {
 //   if (!Array.prototype._pop) {
