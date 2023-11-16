@@ -1,21 +1,34 @@
+// import runTests from "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.mjs"
+
 console.clear();
 /// Slice
 const animals = ["ant", "bison", "camel", "duck", "elephant"];
 
-Array.prototype._slice = undefined;
-
-runTests(() => {
-  if (!Array.prototype._slice) {
-    throw new Error("❌ _slice method is undefined");
-  } else {
-    assert(animals._slice(2), ["camel", "duck", "elephant"]);
-    assert(animals._slice(2, 4), ["camel", "duck"]);
-    assert(animals._slice(1, 5), ["bison", "camel", "duck", "elephant"]);
-    assert(animals._slice(-2), ["duck", "elephant"]);
-    assert(animals._slice(2, -1), ["camel", "duck"]);
-    assert(animals._slice(), ["ant", "bison", "camel", "duck", "elephant"]);
+Array.prototype._slice = function(start = 0, end= this.length) {
+  const data = []
+  if(start < 0) start += this.length
+  if(end < 0) end += this.length
+  if(end < start) end = start
+  
+  for(let i = start; i < end; i++) {
+    // data[data.length] = this[i] // one way to push data to the end of an array
+    data.push(this[i])
   }
-}, "_slice method");
+    return data
+};
+
+// runTests(() => {
+//   if (!Array.prototype._slice) {
+//     throw new Error("❌ _slice method is undefined");
+//   } else {
+//     assert(animals._slice(2), ["camel", "duck", "elephant"]);
+//     assert(animals._slice(2, 4), ["camel", "duck"]);
+//     assert(animals._slice(1, 5), ["bison", "camel", "duck", "elephant"]);
+//     assert(animals._slice(-2), ["duck", "elephant"]);
+//     assert(animals._slice(2, -1), ["camel", "duck"]);
+//     assert(animals._slice(), ["ant", "bison", "camel", "duck", "elephant"]);
+//   }
+// }, "_slice method");
 
 /// Reduce
 const array1 = [1, 2, 3, 4];
@@ -601,7 +614,20 @@ Array.prototype._push = undefined;
 /// Pop
 const plants = ["rose", "tulip", "daisy"];
 
-Array.prototype._pop = undefined;
+Array.prototype._pop = function () {
+  const data = []
+  const removedElement = this[this.length - 1]
+
+  for (let i = 0; i < this.length - 1; i++) {
+    data.push(this[i])
+  }
+
+  this.length = 0
+  this.push(...data)
+  console.log(this)
+
+  return removedElement
+};
 
 // runTests(() => {
 //   if (!Array.prototype._pop) {
