@@ -253,7 +253,15 @@ Array.prototype._map = undefined;
 /// Filter
 const numbers3 = [1, 4, 9, 16, 25];
 
-Array.prototype._filter = undefined;
+Array.prototype._filter = function (func) {
+  const data = [];
+
+  for (let i = 0; i < this.length; i++) {
+    if (func(this[i], i, this)) data.push(this[i]);
+  }
+
+  return data;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._filter) {
