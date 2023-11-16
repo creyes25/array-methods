@@ -286,7 +286,13 @@ Array.prototype._filter = undefined;
 /// Some
 const numbers4 = [1, 4, 9, 16, 25];
 
-Array.prototype._some = undefined;
+Array.prototype._some = function (func) {
+  for (let i = 0; i < this.length; i++) {
+    if (func(this[i], i, this)) return true;
+  }
+
+  return false;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._some) {
