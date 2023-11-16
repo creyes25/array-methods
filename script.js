@@ -236,7 +236,15 @@ Array.prototype._at = undefined;
 /// Map
 const numbers2 = [1, 4, 9, 16];
 
-Array.prototype._map = undefined;
+Array.prototype._map = function (func) {
+  const data = [];
+
+  for (let i = 0; i < this.length; i++) {
+    data.push(func(this[i], i, this));
+  }
+
+  return data;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._map) {
