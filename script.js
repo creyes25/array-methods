@@ -406,13 +406,11 @@ Array.prototype._findLast = function (func) {
 const numbers6 = [2, 4, 6, 8, 10];
 
 Array.prototype._every = function (func) {
-  const data = [];
-
   for (let i = 0; i < this.length; i++) {
-    if (func(this[i], i, this)) data.push(this[i]);
+    if (!func(this[i], i, this)) return false;
   }
 
-  return this.length === data.length;
+  return true;
 };
 
 // runTests(() => {
