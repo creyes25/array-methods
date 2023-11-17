@@ -620,7 +620,17 @@ Array.prototype._unshift = function (...items) {
 /// LastIndexOf
 const numbers8 = [1, 2, 3, 2, 1];
 
-Array.prototype._lastIndexOf = undefined;
+Array.prototype._lastIndexOf = function (
+  searchElement,
+  fromIndex = this.length
+) {
+  if (fromIndex < 0) fromIndex += this.length;
+
+  for (let i = fromIndex - 1; i >= 0; i--) {
+    if (this[i] === searchElement) return i;
+  }
+  return -1;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._lastIndexOf) {
