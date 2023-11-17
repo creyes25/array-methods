@@ -142,7 +142,23 @@ const myFish6 = ["parrot", "anemone", "blue", "trumpet", "sturgeon"];
 const myFish7 = ["angel", "clown", "mandarin", "sturgeon"];
 const myFish8 = ["angel", "clown", "mandarin", "sturgeon"];
 
-Array.prototype._splice = undefined;
+Array.prototype._splice = function (start = 0, deleteCount, ...items) {
+  if (start < 0) start += this.length;
+  if (deleteCount === undefined) deleteCount = this.length;
+  if (deleteCount <= 0) deleteCount = 0;
+
+  const removedElements = this.slice(start, start + deleteCount);
+
+  const newArray = this.slice(0, start).concat(
+    items,
+    this.slice(start + deleteCount)
+  );
+
+  this.length = 0;
+  this.push(...newArray);
+
+  return removedElements;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._splice) {
