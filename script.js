@@ -573,7 +573,23 @@ Array.prototype._find = function (func) {
 /// Unshift
 const items3 = [3, 4, 5];
 
-Array.prototype._unshift = undefined;
+Array.prototype._unshift = function (...items) {
+  // const data = [...items.concat(this)] // using another method
+
+  const data = [...items];
+  for (let i = 0; i < this.length; i++) {
+    data.push(this[i]);
+  }
+
+  this.length = 0;
+  this.push(...data);
+
+  return this.length;
+};
+
+// runTests(() => {
+//   if (!Array.prototype._unshift) {
+//     throw new Error("❌ _unshift method is undefi
 
 // runTests(() => {
 //   if (!Array.prototype._unshift) {
