@@ -98,8 +98,19 @@ const arr6 = ["a", "b", "c"];
 const arr7 = ["d", "e", "f"];
 const letters1 = ["a", "b", "c"];
 
-Array.prototype._concat = undefined;
+Array.prototype._concat = function (...items) {
+  const data = [...this];
 
+  for (let i = 0; i < items.length; i++) {
+    if (typeof items[i] === "object") {
+      data.push(...items[i]); // if element an array in any given index, then copy items from that array
+    } else {
+      data.push(items[i]); // if its not an array then just push value
+    }
+  }
+
+  return data;
+};
 // runTests(() => {
 //   if (!Array.prototype._concat) {
 //     throw new Error("❌ _concat method is undefined");
