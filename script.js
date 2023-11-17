@@ -550,7 +550,13 @@ Array.prototype._includes = function (searchElement, fromIndex = 0) {
 /// Find
 const numbers7 = [5, 12, 8, 130, 44];
 
-Array.prototype._find = undefined;
+Array.prototype._find = function (func) {
+  for (let i = 0; i < this.length; i++) {
+    if (func(this[i], i, this)) return this[i];
+  }
+
+  return undefined;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._find) {
