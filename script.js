@@ -493,7 +493,23 @@ Array.prototype._every = function (func) {
 /// Join
 const elements = ["Fire", "Air", "Water", "Earth"];
 
-Array.prototype._join = undefined;
+Array.prototype._join = function (separator) {
+  let joinedString = "";
+
+  for (let i = 0; i < this.length; i++) {
+    if (separator === undefined) {
+      i === this.length - 1
+        ? (joinedString += `${this[i]}`)
+        : (joinedString += `${this[i]},`);
+    } else {
+      i === this.length - 1
+        ? (joinedString += `${this[i]}`)
+        : (joinedString += `${this[i]}${separator}`);
+    }
+  }
+  
+  return joinedString;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._join) {
