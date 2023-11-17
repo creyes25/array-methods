@@ -80,7 +80,23 @@ Array.prototype._flatMap = function () {
 const arr4 = [0, 1, 2, [3, 4]];
 const arr5 = [0, 1, [2, [3, [4, 5]]]];
 
-Array.prototype._flat = undefined;
+Array.prototype._flat = function (depth = 1) {
+  const data = [];
+
+  function flats(arr, depthCount) {
+    for (let i = 0; i < arr.length; i++) {
+      if ((typeof arr[i] === "object") & (depthCount < depth)) {
+        flats(arr[i], depthCount + 1);
+      } else {
+        data.push(arr[i]);
+      }
+    }
+  }
+
+  flats(this, 0);
+
+  return data;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._flat) {
