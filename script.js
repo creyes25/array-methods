@@ -672,7 +672,13 @@ Array.prototype._indexOf = function (searchElement, fromIndex = 0) {
 /// FindLastIndex
 const numbers9 = [5, 12, 8, 130, 44, 8];
 
-Array.prototype._findLastIndex = undefined;
+Array.prototype._findLastIndex = function (func) {
+  for (let i = this.length - 1; i >= 0; i--) {
+    if (func(this[i], i, this)) return i;
+  }
+
+  return -1;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._findLastIndex) {
