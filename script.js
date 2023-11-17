@@ -695,7 +695,13 @@ Array.prototype._findLastIndex = function (func) {
 /// FindIndex
 const numbers10 = [5, 12, 8, 130, 44];
 
-Array.prototype._findIndex = Array.prototype.findIndex;
+Array.prototype._findIndex = function (func) {
+  for (let i = 0; i < this.length; i++) {
+    if (func(this[i], i, this)) return i;
+  }
+
+  return -1;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._findIndex) {
