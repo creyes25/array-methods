@@ -63,8 +63,23 @@ Array.prototype._reduce = function (func, initialVal) {
 const arr2 = [1, 2, 1];
 const arr3 = [1, 2, 3, 4];
 
-Array.prototype._flatMap = function () {
+Array.prototype._flatMap = function (func) {
   const data = [];
+  const flatData = [];
+
+  for (let i = 0; i < this.length; i++) {
+    data.push(func(this[i], i, this));
+  }
+
+  data.forEach((el) => {
+    if (typeof el === "object") {
+      flatData.push(...el);
+    } else {
+      flatData.push(el);
+    }
+  });
+
+  return flatData;
 };
 
 // runTests(() => {
