@@ -526,7 +526,14 @@ Array.prototype._join = function (separator) {
 /// Includes
 const fruits = ["apple", "banana", "mango", "grape", "orange"];
 
-Array.prototype._includes = undefined;
+Array.prototype._includes = function (searchElement, fromIndex = 0) {
+  if (fromIndex < 0) fromIndex += this.length;
+  for (let i = fromIndex; i < this.length; i++) {
+    if (this[i] === searchElement) return true;
+  }
+
+  return false;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._includes) {
