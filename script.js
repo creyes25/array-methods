@@ -648,7 +648,13 @@ Array.prototype._lastIndexOf = function (
 /// IndexOf
 const colors = ["red", "green", "blue", "green", "yellow"];
 
-Array.prototype._indexOf = undefined;
+Array.prototype._indexOf = function (searchElement, fromIndex = 0) {
+  for (let i = fromIndex; i < this.length; i++) {
+    if (searchElement === this[i]) return i;
+  }
+
+  return -1;
+};
 
 // runTests(() => {
 //   if (!Array.prototype._indexOf) {
